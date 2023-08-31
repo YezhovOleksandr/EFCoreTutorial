@@ -4,6 +4,7 @@ using EFCoreApplication_DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreApplication_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230831200208_moveListOfAuthorsFromAuthorsTableToBooksTable")]
+    partial class moveListOfAuthorsFromAuthorsTableToBooksTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -52,7 +55,7 @@ namespace EFCoreApplication_DataAccess.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("Authors", (string)null);
+                    b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.Book", b =>
@@ -79,7 +82,7 @@ namespace EFCoreApplication_DataAccess.Migrations
 
                     b.HasIndex("Publisher_Id");
 
-                    b.ToTable("Books", (string)null);
+                    b.ToTable("Books");
                 });
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.BookDetail", b =>
@@ -107,7 +110,7 @@ namespace EFCoreApplication_DataAccess.Migrations
                     b.HasIndex("Book_id")
                         .IsUnique();
 
-                    b.ToTable("BookDetails", (string)null);
+                    b.ToTable("BookDetails");
                 });
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.Genre", b =>
@@ -126,7 +129,7 @@ namespace EFCoreApplication_DataAccess.Migrations
 
                     b.HasKey("GenreId");
 
-                    b.ToTable("Genres", (string)null);
+                    b.ToTable("Genres");
                 });
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.Publisher", b =>
@@ -146,7 +149,7 @@ namespace EFCoreApplication_DataAccess.Migrations
 
                     b.HasKey("PublisherId");
 
-                    b.ToTable("Publishers", (string)null);
+                    b.ToTable("Publishers");
                 });
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.Author", b =>
@@ -159,7 +162,7 @@ namespace EFCoreApplication_DataAccess.Migrations
             modelBuilder.Entity("EFCoreApplication_Model.Models.Book", b =>
                 {
                     b.HasOne("EFCoreApplication_Model.Models.Publisher", "Publisher")
-                        .WithMany("Books")
+                        .WithMany("BookList")
                         .HasForeignKey("Publisher_Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -187,7 +190,7 @@ namespace EFCoreApplication_DataAccess.Migrations
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.Publisher", b =>
                 {
-                    b.Navigation("Books");
+                    b.Navigation("BookList");
                 });
 #pragma warning restore 612, 618
         }

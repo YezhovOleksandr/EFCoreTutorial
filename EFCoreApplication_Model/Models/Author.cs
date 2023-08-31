@@ -23,6 +23,8 @@ namespace EFCoreApplication_Model.Models
         public string Location { get; set; }
 
         [NotMapped]
-        public string FullName { get =>  FirstName + "_" + LastName;}
+        public string FullName { get =>  $"{FirstName} {LastName}";}
+
+        
     }
 }
