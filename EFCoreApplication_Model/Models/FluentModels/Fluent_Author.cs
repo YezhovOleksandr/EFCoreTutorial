@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFCoreApplication_Model.Models
 {
-    public class Author
+    public class Fluent_Author
     {
         [Key]
         public int Author_id { get; set; }

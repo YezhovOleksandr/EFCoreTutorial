@@ -11,6 +11,8 @@ namespace EFCoreApplication_DataAccess.Data
         public DbSet<Author> Authors { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<BookDetail> BookDetails { get; set; }
+        //rename to Fluent_BookDetails
+        public DbSet<Fluent_BookDetail> BookDetails_fluent { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -19,7 +21,10 @@ namespace EFCoreApplication_DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            
+            modelBuilder.Entity<Fluent_BookDetail>().ToTable("Fluent_BookDetails");
+            modelBuilder.Entity<Fluent_BookDetail>().Property(u => u.NumberOfChapters).HasColumnName("NoOfChapters");
+            modelBuilder.Entity<Fluent_BookDetail>().Property(u => u.NumberOfChapters).IsRequired();
+            modelBuilder.Entity<Fluent_BookDetail>().HasKey(u => u.BookDetail_Id);
            
         }
     }

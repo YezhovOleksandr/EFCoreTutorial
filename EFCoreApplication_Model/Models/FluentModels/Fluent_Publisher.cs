@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EFCoreApplication_Model.Models
 {
-    public class Publisher
+    public class Fluent_Publisher
     {
         [Key]
         public int PublisherId { get; set; }
@@ -16,7 +16,7 @@ namespace EFCoreApplication_Model.Models
         [Required]
         public string Name { get; set; }
 
-        public List<Book> Books { get; set; }
+        //public List<Fluent_Book> Books { get; set; }
 
         public string FoundDate { get; set; }
 
