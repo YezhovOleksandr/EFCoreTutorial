@@ -11,7 +11,7 @@ namespace EFCoreApplication_Model.Models
     public class Author
     {
         [Key]
-        public Guid Author_id { get; set; }
+        public int Author_id { get; set; }
 
         [Required]
         [MaxLength(50)]

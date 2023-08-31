@@ -3,6 +3,7 @@ using EFCoreApplication_DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCoreApplication_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230831175248_removingPrimatyColums")]
+    partial class removingPrimatyColums
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -23,12 +26,6 @@ namespace EFCoreApplication_DataAccess.Migrations
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.Author", b =>
                 {
-                    b.Property<int>("Author_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Author_id"));
-
                     b.Property<string>("BirthDate")
                         .HasColumnType("nvarchar(max)");
 
@@ -44,19 +41,11 @@ namespace EFCoreApplication_DataAccess.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Author_id");
-
                     b.ToTable("Authors");
                 });
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.Book", b =>
                 {
-                    b.Property<int>("BookId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BookId"));
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -66,26 +55,16 @@ namespace EFCoreApplication_DataAccess.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("BookId");
-
                     b.ToTable("Books");
                 });
 
             modelBuilder.Entity("EFCoreApplication_Model.Models.Genre", b =>
                 {
-                    b.Property<int>("GenreId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GenreId"));
-
                     b.Property<int>("DisplayOrder")
                         .HasColumnType("int");
 
                     b.Property<string>("GenreName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("GenreId");
 
                     b.ToTable("Genres");
                 });

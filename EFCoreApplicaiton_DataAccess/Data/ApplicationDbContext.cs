@@ -17,9 +17,8 @@ namespace EFCoreApplication_DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Book>().HasData(
-                new Book {BookId = Guid.NewGuid() ,Title = "1984", Description = "Antiutopia", Price = 200 }
-                );
+            
+           
         }
     }
 }
