@@ -10,6 +10,7 @@ namespace EFCoreApplication_Model.Models
     public class Book
     {
         [Key]
+        
         public Guid BookId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
